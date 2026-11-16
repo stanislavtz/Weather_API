@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
 
@@ -10,9 +10,12 @@ def index():
 
 @app.get("/weather/<int:station_id>/<string:date>")
 def weather(station_id, date):
-    return render_template("weather.html",
-                           station_id=station_id,
-                           date=date)
+    temperature = 23
+    return jsonify({
+        'station_id': station_id,
+        'date': date,
+        'temperature': temperature
+    })
 
 
 if __name__ == '__main__':
