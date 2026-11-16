@@ -2,7 +2,18 @@
 
 {% block content %}
 <h1>Weather Data API</h1>
+<form action="" method="POST">
+    <label for="station_id">Station ID</label>
+    <input type="number" name="station_id" id="station-id">
+    <br>
+    <br>
+    <label for="date">DATE</label>
+    <input type="date" name="date" id="searched-date">
+    <br>
+    <br>
+    <input type="submit" value="Continue">
+</form>
 <p>URL format: <a
-    href="{{url_for('weather', station_id=10, date='16-11-2026')}}">http://127.0.0.1:5000/api/v1/station/date</a>
+        href="{{url_for('weather', station_id=7, date='1942-06-05')}}">http://127.0.0.1:5000/api/v1/station/date</a>
 </p>
 {% endblock %}
