@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Weather Data API</h1>
+<p>URL format: <a
+    href="{{url_for('weather', station_id=10, date='16-11-2026')}}">http://127.0.0.1:5000/api/v1/station/date</a>
+</p>
+{% endblock %}
