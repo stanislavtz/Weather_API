@@ -16,4 +16,21 @@
 <p>URL format: <a
         href="{{url_for('weather', station_id=7, date='1942-06-05')}}">http://127.0.0.1:5000/api/v1/station/date</a>
 </p>
+
+<table>
+    <thead>
+        <td></td>
+        <td class="t-header">STAID</td>
+        <td class="t-header">STANAME</td>
+    </thead>
+    <tbody>
+        {% for station in stations %}
+        <tr>
+            <td>{{ station[0] }}</td>
+            <td>{{ station[1] }}</td>
+            <td>{{ station[2] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
