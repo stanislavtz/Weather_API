@@ -16,8 +16,9 @@
 <p>URL format: <a
         href="{{url_for('weather', station_id=7, date='1942-06-05')}}">http://127.0.0.1:5000/api/v1/station/date</a>
 </p>
+<p>{{ stations|safe }}</p>
 
-<table>
+<!-- <table>
     <thead>
         <td></td>
         <td class="t-header">STAID</td>
@@ -32,5 +33,5 @@
         </tr>
         {% endfor %}
     </tbody>
-</table>
+</table> -->
 {% endblock %}

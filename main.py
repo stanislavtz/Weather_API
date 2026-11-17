@@ -16,13 +16,13 @@ def index():
     df = pd.read_csv("data/stations.txt", skiprows=17)
     df.columns = [column.strip() for column in df.columns]
 
-    stations_id_and_names_df = df.iloc[:, :2][:44]
+    stations_df = df.iloc[:, :2][:44]
 
-    stations = []
-    for station in stations_id_and_names_df.iterrows():
-        stations.append((station[0], station[1]["STAID"], station[1]["STANAME"]))
+    # stations = []
+    # for station in stations_id_and_names_df.iterrows():
+    #     stations.append((station[0], station[1]["STAID"], station[1]["STANAME"]))
 
-    return render_template('home.html', stations=stations)
+    return render_template('home.html', stations=stations_df.to_html())
 
 
 @app.get("/weather/<int:station_id>/<string:date>")
