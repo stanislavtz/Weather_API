@@ -1,0 +1,9 @@
+table,
+tr,
+td {
+  border: black 1px solid;
+}
+
+.t-header {
+  text-align: right;
+}
