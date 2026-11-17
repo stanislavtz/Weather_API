@@ -12,7 +12,17 @@ def index():
         date = request.form["date"]
 
         return redirect(url_for("weather", station_id=station_id, date=date))
-    return render_template('home.html')
+
+    df = pd.read_csv("data/stations.txt", skiprows=17)
+    df.columns = [column.strip() for column in df.columns]
+
+    stations_id_and_names_df = df.iloc[:, :2][:44]
+
+    stations = []
+    for station in stations_id_and_names_df.iterrows():
+        stations.append((station[0], station[1]["STAID"], station[1]["STANAME"]))
+
+    return render_template('home.html', stations=stations)
 
 
 @app.get("/weather/<int:station_id>/<string:date>")
@@ -32,10 +42,11 @@ def weather(station_id, date):
             temperature = None
 
         station_df = pd.read_csv("data/stations.txt", skiprows=17)
-        station_df = station_df[:50]
+        station_df = station_df[:44]
         station_df.columns = [column.strip() for column in station_df.columns]
 
         station_name = station_df.loc[station_df["STAID"] == station_id]["STANAME"].squeeze()
+        station_name = station_name.strip()
 
         return jsonify({
             'station_id': station_id,
