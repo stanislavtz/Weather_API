@@ -14,8 +14,17 @@
     <input type="submit" value="Continue">
 </form>
 <p>URL format: <a
-        href="{{url_for('weather', station_id=7, date='1942-06-05')}}">http://127.0.0.1:5000/api/v1/station/date</a>
+        href="{{url_for('weather', station_id=7, date='1942-06-05')}}">http://127.0.0.1:5000/weather/api/v1/station/date</a>
 </p>
+<p>Example for weather for particular station and date:
+    http://127.0.0.1:5000/weather/api/v1/10/1942-06-05</p>
+
+<p>Example for weather for particular station for all dates:
+    http://127.0.0.1:5000/weather/api/v1/10</p>
+
+<p>Example for weather for particular station for specific year:
+    http://127.0.0.1:5000/weather/api/v1/yearly/10/1942</p>
+
 <p>{{ stations|safe }}</p>
 
 <!-- <table>
