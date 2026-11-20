@@ -41,7 +41,7 @@ def index():
     return render_template('home.html', stations=stations_df.to_html())
 
 
-@app.get("/weather/api/v1/<int:station_id>")
+@app.get("/weather/api/v1/<int:station_id>/")
 def all_weathers(station_id):
     """Retrieves all weather data for a specific station"""
     df = pd.read_csv(f"data/TG_STAID{station_id:06d}.txt",
@@ -55,27 +55,8 @@ def all_weathers(station_id):
 
     return df_copy.to_dict(orient="records")
 
-    name = get_station_name(station_id)
 
-    all_weather_data = []
-
-    for row in df_copy.iterrows():
-        date = row[1]["DATE"]
-        temperature = float(row[1]["TG"]) / 10
-
-        station = {
-            'station_id': station_id,
-            "station name": name,
-            'date': date,
-            'temperature': temperature
-        }
-
-        all_weather_data.append(station)
-
-    return jsonify(all_weather_data)
-
-
-@app.get("/weather/api/v1/<int:station_id>/<string:date>")
+@app.get("/weather/api/v1/<int:station_id>/<string:date>/")
 def weather(station_id, date):
     """Retrieves weather data for a specific station on particular date."""
     try:
@@ -104,7 +85,7 @@ def weather(station_id, date):
         return jsonify({"info": f"No data for station {station_id}"})
 
 
-@app.get("/weather/api/v1/yearly/<int:station_id>/<int:year>")
+@app.get("/weather/api/v1/yearly/<int:station_id>/<int:year>/")
 def yearly(station_id, year):
     """Retrieve data for specific station for whole year"""
     df = pd.read_csv(f"data/TG_STAID{station_id:06d}.txt",
